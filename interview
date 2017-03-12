@@ -1,0 +1,216 @@
+单例模式
+get/post
+get:一般用于信息获取（查询）
+（幂等）使用URL传递参数
+     对所发送信息的数量也有限制，一般在2000个字符内
+post：一般用于修改服务器上的资源
+     对所发送信息的数量无限制
+
+用sublime重开文件会乱码，解决方案：用dreamweaver打开编辑
+开发中遇到的问题：代码复用问题，解决方案：另写方法将起覆盖掉，又不影响其他页面使用该方法
+浏览器兼容问题：
+css：IE9及以下不支持transformI
+          IE7专用hack   *+
+
+IE:trident,    firefox:gecko,    chrome:webkit/blink, safari:webkit,
+
+HTML
+html5新特性：canvas画布、audio、video、对本地存储有更好的支持、     新的特殊内容的元素： article、footer、header、nav、section；新的表单控件：calendar、date、time、email、url、search；
+
+CSS
+1.
+清浮动
+
+2.
+兼容样式：
+3.优化：
+CSS3
+1.旋转、过度、动画
+JS
+1.jquery
+
+1.1
+选择器：
+基本选择器
+层次选择器：parent（），next（），prev（），siblings（），
+过滤选择器：first（），last（），gt（），lt（），eq（），not（），
+1.1.2  jquery优势
+         开源；链式操作；强大选择器；兼容性好；
+1.2javascript兼容:
+     访问事件的目标元素、
+     确定鼠标按下哪个键、
+     处理鼠标的位置、
+     访问键盘命令；
+1.3 JavaScript运行机制
+     单线程、任务队列
+1.4javascript解析机制
+step1. 读入第一个代码段step2. 做语法分析，有错则报语法错误（比如括号不匹配等），并跳转到step5
+step3. 对var变量和function定义做“预解析”（永远不会报错的，因为只解析正确的声明）
+          step4. 执行代码段，有错则报错（比如变量未定义）
+          step5. 如果还有下一个代码段，则读入下一个代码段，重复step2
+          step6. 结束
+2.ajax:
+     原理：通过JavaScript创建XMLHttpRequest对象，再由JavaScript调用XMLHttpRequest对象的方法完成异步通信，然后再由JavaScript通过DOM属性和方法，完成页面的不完全刷新；
+
+2.1.readystate:
+          0:未初始化
+          1:正在加载
+          2.已加载
+          3.交互中
+          4.完成
+正则表达式：
+2.2 DOM属性和方法：   
+     方法：
+     createElement();        document.createElement();
+     createTextNode();      document.createTextNode();
+     cloneNode();              document.cloneNode();
+     appendChild()            element.appendChild();
+     insertBefore();            element.insertBefore();
+     removeChild();           element.removeChild();
+     replaceChild();           element.replaceChild();
+     setAttribute();            element.setAttribute();
+     getElementById();     document.getElementById();
+     getElementsByTagName();     document.getElementsByTagName();
+     hasChildNodes();       element.hasChildNodes();
+     属性：
+     节点名字：  nodeName;               element.nodeName;
+     节点当前值：nodeValue;              element.nodeValue;
+
+严格模式／混杂模式：
+严格模式：
+     禁止使用with语句
+     创建eval作用域
+     禁止this指向全局对象
+     不允许变量未声明就使用
+     对象不能有重名属性
+  
+混杂模式：
+     不写DOCTYPE
+标准模式：
+<!DOCTYPE html>或者
+<!DOCTYPEHTMLPUBLIC“-//W3C//DTDHTML4.01//EN”   "http://www.w3.org/TR/html4/strict.dtd”> or,forXHTML:  <!DOCTYPEhtmlPUBLIC“-//W3C//DTDXHTML1.0Strict//EN”   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd”> 
+SASS
+    完全兼容CSS3;
+    扩展了新功能，如变量，嵌套，混合
+    SassScript支持6种数据类型(数字，文本字符串，颜色，布尔值，空值，值列表，)
+         
+三次握手/四次分手
+
+this关键字引用的是包含它的函数作为某个对象的方法被调用时的那个对象；
+web性能优化：
+1.尽量减少http请求
+2.使用浏览器缓存
+3.脚本放入底部
+4.样式表放入头部
+5.背景图合并
+6.压缩样式表、脚本
+
+如何减少http请求：
+     使用图片合并；
+     css外引
+     css合并
+     少用location.load(),使用location.href浏览器会读取本地缓存
+     
+
+
+BOM:
+1.window对象
+2.location对象
+3.navigator对象
+4.screen对象
+5.history对象
+
+
+sea.js
+
+
+前端网站性能优化：
+1.尽量减少http请求
+2.针对css：将样式文件放于代码页面上端；使用link引入外部样式文件，避免使用css表达式；
+3.针对javascript：将脚本文件放于代码页面下端；减少 DOM操作
+4.对于图片：可用背景图合并；使用png格式图片，不在页面中使用缩放图片；
+5.使用ajax请求时尽量使用get方式；
+兼容：
+     
+前端如何做好用户体验：
+     保证一致性、
+     尽量减少产品层级、
+     提供明确的导航、
+     减少用户输入、
+     不要让用户傻等、减少用户等待时间
+     自动保存用户输入内容、
+     减少界面间的交互、
+     (界面中)提供及时准确的反馈、
+     尊重用户认知习惯、
+     加强文本可读性(排版、间距、字体大小、配色)
+
+对前端安全的看法：
+
+
+
+从输入URL到页面加载完成的过程中都发生了什么事情？
+    1. 输入地址
+    2.
+浏览器查找域名的 IP 地址
+这一步包括 DNS 具体的查找过程，包括：浏览器缓存->系统缓存->路由器缓存...
+    3. 浏览器向 web 服务器发送一个 HTTP 请求
+    4. 服务器的永久重定向响应（从 http://example.com 到 http://www.example.com）
+    5. 浏览器跟踪重定向地址
+    6. 服务器处理请求
+    7. 服务器返回一个 HTTP 响应
+    8. 浏览器显示 HTML
+    9. 浏览器发送请求获取嵌入在 HTML 中的资源（如图片、音频、视频、CSS、JS等等）
+    10. 浏览器发送异步请求
+(或者)
+0.输入URL
+1.解析URL
+2.构造并发送HTTP请求
+3.HTTP报文传输过程
+4.服务器接受并处理HTTP报文
+5.服务器构造并发送响应报文（传输过程略）
+6.浏览器接收报文，并开始构建页面
+7.（可选）浏览器发送静态资源请求（处理过程略）
+8.（可选）浏览器发送Ajax请求（处理过程略）
+9.页面构建完成
+
+
+
+浏览器渲染过程：解析html构建dom树->构建render树->布局render树->绘制render树；
+说一下http状态码：
+
+HTML
+1.对html标签的语义性有比较清晰的理解，有良好的布局思维，能够合理的选择标签，书写出符合代码规范、嵌套规则语义性良好，可扩展性强、结构清晰的前端页面；
+2.熟悉前端网站性能优化技术，使用背景图合并，合理选择图片格式，尽量减少http请求，合理放置样式文件及脚本文件位置，避免使用css表达式及减少DOM操作，合理选择ajax请求方式，以达到提升网站加载速度，降低服务器压力，及用户体验的目的；
+
+CSS
+1.浏览器兼容性有清晰的了解，能够写出兼容IE7+及火狐、谷歌等主流浏览器的前端页面，对于浏览器中存在的常见兼容问题，能够较好的处理；
+2.熟练运用css样式；熟悉sass/less,能够快速处理页面中的样式问题;
+
+JS
+1.熟练使用JQUERY框架，具备良好的编程思想，能够熟练的书写出TAB切换，手风琴等常见网页特效；
+2.对JS的解析机制、事件了解;
+3.对AJAX的基本原理有一定的了解，明白数据的获取、通过DOM操作实现异步加载等内容；
+4.对JS原型、闭包了解;
+Angular2
+1.熟悉angular2框架，明白组件路由过程极其通讯，能够编写组件及相应的单元测试;
+ES6/Typescript 
+1.对ES6语法有所了解，对于新的变量命名命令let/const能够灵活运用，并知晓与var的差异;
+2.对新的语法扩展(如剪头函数、)
+3.对于ES6的超集Typescript2,了解其相应的类及接口的实现;
+HTML5&CSS3
+1.对HTML5的新标签、新特性(如新的输入控件required，autofocus、email、pattern等，以及localStorage/sessionStorage等)有所了解，；
+2.熟悉CSS3的变形、过渡、动画，并能灵活运用写出常见的网页动画效果；
+
+网站前端优化方面：
+
+React.js
+组件生命周期：Mounted\Unmouted\Update
+
+Vue.js
+1.数据绑定；
+2.class与style绑定；
+3.渲染指令；v-if;   v-show;   v-else;   v-for;   特殊变量$index(当前数组元素的索引);<template v-for=“"></template>;   v-model
+4.自定义指令：
+5.自定义过滤器
+
+
