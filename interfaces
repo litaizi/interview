@@ -392,11 +392,11 @@ $.fn.squeezebox = function(n,time){
   _span.on('click',function(){
     _span.removeClass('act');
     _span.find('b').removeClass('cur');
-    if($(this).siblings('ul').hasClass('none')){
-        $(this).siblings('ul').slideUp(time).removeClass('none');   
+    if($(this).siblings('ul').attr('isdown') == 'down'){
+        $(this).siblings('ul').slideDown(time).siblings('li').find('.submenu').slideUp();;   
         $(this).find('b').removeClass('cur');
     }else{
-        $(this).siblings('ul').slideDown(time).addClass('none');           
+        $(this).siblings('ul').attr({'isdown':'down'}).slideDown(time);           
         $(this).find('b').addClass('cur');
     }        
     $(this).addClass('act');
