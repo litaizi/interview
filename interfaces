@@ -1,3 +1,17 @@
+//touchend/touchmove事件区分开
+stopTouchendPropagationAfterScroll();
+function stopTouchendPropagationAfterScroll(){
+    var locked = false;
+
+    window.addEventListener('touchmove', function(ev){
+        locked || (locked = true, window.addEventListener('touchend', stopTouchendPropagation, true));
+    }, true);
+    function stopTouchendPropagation(ev){
+        ev.stopPropagation();
+        window.removeEventListener('touchend', stopTouchendPropagation, true);
+        locked = false;
+    }
+}
 //返回顶部
 	$.fn.scrollTo = function(speed){
 		var targetOffset = $(this).offset().top;
