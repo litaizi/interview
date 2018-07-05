@@ -78,7 +78,13 @@ function stopTouchendPropagationAfterScroll(){
 		$('body').scrollTo(500);
 		return false;
 	})
-
+	$(window).scroll(function(){
+		if(document.body.scrollTop >= 1500 || document.documentElement.scrollTop >= 1500){
+			$('.gototop').show();
+		}else{
+			$('.gototop').hide();
+		}
+	})
 
 //div居中显示
 	$(document).ready(function($) {
