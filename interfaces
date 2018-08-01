@@ -555,5 +555,47 @@ border-top: 13px solid transparent;
 border-right: 26px solid red; 
 border-bottom: 13px solid transparent; 
 } 
-
-
+//信息逐条显示
+<div class="showlist">
+	<ul>
+		<li>
+			<dl>
+				<dt class="profilebox"><img src="http://image.smart-dog.cn/img_sarah.png" alt=""></dt>
+				<dd class="messagebox">
+					<p class="messagecontent">陪伴孩子唱歌与舞蹈
+				单词短句作歌词
+				一周学唱一首英文歌
+				5-10个单词短句开口说</p>
+					<b></b>
+				</dd>
+			</dl>
+		</li>
+		<li>
+			<dl>
+				<dt class="profilebox"><img src="http://image.smart-dog.cn/img_sarah.png" alt=""></dt>
+				<dd class="messagebox">
+					<p class="messagecontent">陪伴孩子唱歌与舞蹈
+				单词短句作歌词
+				一周学唱一首英文歌
+				5-10个单词短句开口说</p>
+					<b></b>
+				</dd>
+			</dl>
+		</li>
+	</ul>
+</div>
+.showlist{ padding-top:  4rem;}
+.showlist li{padding: 0.7rem 1rem;opacity: 0; }
+.showlist li.show{transition:all linear 0.8s;opacity: 1;transform: translate(0,-1rem);}
+$(function() {
+	//信息逐条显示
+	var len = $('.showlist').children('ul').find('li').length;
+	var i = 0; 
+    var timer = setInterval(function(){
+        $('.showlist').children('ul').children('li').eq(i).delay(1000).addClass('show');
+        i++;
+        if(i > len-1){  
+            clearInterval(timer);
+        }
+    },2000);
+});
