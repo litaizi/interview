@@ -1,0 +1,123 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {padding: 0;margin: 0;}
+        canvas {background-color: #000;display: block;}
+    </style>
+</head>
+
+<body>
+    <canvas id="bubble" width="1914" height="500"></canvas>
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById("bubble");
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    canvas.width = w;
+    canvas.height = h;
+    window.onresize = function() {
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = w;
+        canvas.height = h;
+    }
+    var ctx = canvas.getContext('2d');
+    var colors = ["#fff", "#fff", "#fff"];
+
+    function random(min, max) { //返回一个Min到max的值
+        return Math.random() * (max - min) + min;
+    }
+    function Bubble() {
+    }
+    Bubble.prototype = {
+        init: function() {
+            this.x = random(0, w); //泡泡生成的x的位置
+            this.y = random(0, h);
+            this.r = random(3, 5);
+            this.color = colors[Math.floor(random(0, 3))];
+            this.xr=random(-1,1);
+            this.yr=random(-1,1);
+            this.Dis=40;
+            this.vr=random(1,3);
+        },
+        draw: function() {
+            ctx.beginPath();
+            ctx.fillStyle = this.color;
+            ctx.arc(this.x, this.y, this.r*0.05, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#fff';   // 文字填充颜色
+            ctx.font = '33px Adobe Ming Std';
+            ctx.fillText('',this.x-this.r*2.5,this.y-this.r*2.5);
+            /*var img = new Image();
+            img.src = 'juzhuzheng.jpg';
+            img.style.width = 200;
+            img.style.height = 200;
+            img.onload = function(){
+                ctx.drawImage(img,0,0)
+            }
+            ctx.stroke();*/
+        },
+        move:function(){
+            this.x+=this.xr;
+            this.y+=this.yr;
+            if(this.x-this.r<0||this.x+this.r>w||this.y-this.r<0||this.y+this.r>h){
+                this.xr=-this.xr;
+                this.yr=-this.yr;
+            }
+            this.xDis=Math.abs(pX-this.x);
+            this.yDis=Math.abs(pY-this.y);
+            if(this.xDis<this.Dis&&this.yDis<this.Dis&&this.r<this.Dis){
+                this.r+=this.vr;
+            }else if(this.xDis>this.Dis&&this.yDis>this.Dis&&this.r>4){
+                this.r-=this.vr;
+            }
+
+            this.draw();
+        }
+    }
+    var bubbleArray=[];
+
+    function create() {
+        var bubble = new Bubble();
+        bubble.init();
+        bubble.draw();
+        bubbleArray.push(bubble);
+    }
+
+    for(var i=0;i<500;i++){
+            create();
+    }
+    setInterval(function(){
+        ctx.clearRect(0,0,w,h);
+            for(var item of bubbleArray){
+                item.move();
+            }
+        },1000/60);
+        var pX,pY;
+        canvas.onmousemove=function(){
+            var ev=ev||window.event;
+            pX=ev.clientX;
+            pY=ev.clientY;
+        }
+
+    window.onload = function(){
+        //向课堂返回总页数
+        var totalPages=JSON.stringify({"method":"onPagenum","totalPages":1});
+        console.log(totalPages);
+        window.parent.postMessage(totalPages,'*');
+
+        //加载完返回消息：分辨率
+        var coursewareRatio= 16/9; 
+        var data=JSON.stringify({method:"onLoadComplete","coursewareRatio":coursewareRatio});
+        console.log(data); 
+        window.parent.postMessage(data,'*'); 
+
+        //鼠标移入操作，向上传参
+        var sendEvent=JSON.stringify({method:"onFileMessage",handleData:new Bubble.move()}); 
+        console.log(sendEvent);
+        window.parent.postMessage(sendEvent,'*'); 
+    }
+</script>
+</html>
